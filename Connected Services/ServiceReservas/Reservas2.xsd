@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WCFCinema.Servicios" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCFCinema.Servicios" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:49575/Servicios/Reservas.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WCFCinema" />
+  <xs:complexType name="infoReserva">
+    <xs:sequence>
+      <xs:element name="Documento" nillable="true" type="xs:string" />
+      <xs:element name="Fecha" nillable="true" type="xs:string" />
+      <xs:element name="Funcion" type="xs:int" />
+      <xs:element name="Hora" nillable="true" type="xs:string" />
+      <xs:element name="Nombre" nillable="true" type="xs:string" />
+      <xs:element name="Silla" type="xs:int" />
+      <xs:element name="Telefono" nillable="true" type="xs:string" />
+      <xs:element name="ValorPaga" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="infoReserva" nillable="true" type="tns:infoReserva" />
+  <xs:complexType name="resultReservasHora">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Error" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Mensaje" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WCFCinema" minOccurs="0" name="Reservas" nillable="true" type="q1:ArrayOfConsultReservasFuncionHora_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="resultReservasHora" nillable="true" type="tns:resultReservasHora" />
+  <xs:complexType name="resultReservas">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Error" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Mensaje" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WCFCinema" minOccurs="0" name="Reservas" nillable="true" type="q2:ArrayOfConsultHorariosReservasFuncion_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="resultReservas" nillable="true" type="tns:resultReservas" />
+</xs:schema>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WCFCinema" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCFCinema" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfConsultFunciones_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ConsultFunciones_Result" nillable="true" type="tns:ConsultFunciones_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfConsultFunciones_Result" nillable="true" type="tns:ArrayOfConsultFunciones_Result" />
+  <xs:complexType name="ConsultFunciones_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="F_ID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="F_Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="F_Precio" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ConsultFunciones_Result" nillable="true" type="tns:ConsultFunciones_Result" />
+  <xs:complexType name="ArrayOfConsultHorasFuncion_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ConsultHorasFuncion_Result" nillable="true" type="tns:ConsultHorasFuncion_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfConsultHorasFuncion_Result" nillable="true" type="tns:ArrayOfConsultHorasFuncion_Result" />
+  <xs:complexType name="ConsultHorasFuncion_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="HF_Descuento" type="xs:decimal" />
+      <xs:element minOccurs="0" name="HF_Hora" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HF_PorcentajeDescuento" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ConsultHorasFuncion_Result" nillable="true" type="tns:ConsultHorasFuncion_Result" />
+  <xs:complexType name="ArrayOfConsultSillasFuncion_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ConsultSillasFuncion_Result" nillable="true" type="tns:ConsultSillasFuncion_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfConsultSillasFuncion_Result" nillable="true" type="tns:ArrayOfConsultSillasFuncion_Result" />
+  <xs:complexType name="ConsultSillasFuncion_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FHS_Reservada" type="xs:decimal" />
+      <xs:element minOccurs="0" name="FHS_Silla" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ConsultSillasFuncion_Result" nillable="true" type="tns:ConsultSillasFuncion_Result" />
+</xs:schema>

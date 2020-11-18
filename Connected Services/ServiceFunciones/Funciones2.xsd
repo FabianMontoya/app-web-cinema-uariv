@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WCFCinema.Servicios" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCFCinema.Servicios" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:49575/Servicios/Funciones.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WCFCinema" />
+  <xs:import schemaLocation="http://localhost:49575/Servicios/Funciones.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ResultFunciones">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Error" type="xs:boolean" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WCFCinema" minOccurs="0" name="Funciones" nillable="true" type="q1:ArrayOfConsultFunciones_Result" />
+      <xs:element minOccurs="0" name="Mensaje" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultFunciones" nillable="true" type="tns:ResultFunciones" />
+  <xs:complexType name="InfoFuncionHora">
+    <xs:sequence>
+      <xs:element name="Descuento" type="xs:boolean" />
+      <xs:element name="Fecha" nillable="true" type="xs:string" />
+      <xs:element name="Funcion" type="xs:int" />
+      <xs:element name="Hora" nillable="true" type="xs:string" />
+      <xs:element name="NumeroSillas" type="xs:int" />
+      <xs:element name="PorcentajeDescuento" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InfoFuncionHora" nillable="true" type="tns:InfoFuncionHora" />
+  <xs:complexType name="ResultFechas">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Error" type="xs:boolean" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Fechas" nillable="true" type="q2:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Mensaje" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultFechas" nillable="true" type="tns:ResultFechas" />
+  <xs:complexType name="ResultHoras">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Error" type="xs:boolean" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WCFCinema" minOccurs="0" name="Horas" nillable="true" type="q3:ArrayOfConsultHorasFuncion_Result" />
+      <xs:element minOccurs="0" name="Mensaje" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultHoras" nillable="true" type="tns:ResultHoras" />
+  <xs:complexType name="ResultSillas">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Error" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Mensaje" nillable="true" type="xs:string" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WCFCinema" minOccurs="0" name="Sillas" nillable="true" type="q4:ArrayOfConsultSillasFuncion_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultSillas" nillable="true" type="tns:ResultSillas" />
+</xs:schema>

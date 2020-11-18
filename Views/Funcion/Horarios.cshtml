@@ -1,0 +1,33 @@
+﻿@model AppWeb_Cinema.ServiceReservas.resultReservas
+
+@{
+    ViewBag.Title = "Horarios Función";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Horarios Función @ViewBag.Funcion</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <button type="button" class="btn btn-success" onclick="document.location.href='@string.Concat(Url.Content("~/Horario/Crear"),"/",ViewBag.Funcion)'">Crear Nuevo Horario <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped" style="margin-top:20px;">
+            <thead style="text-align:center;"><tr><th>Fecha</th><th>Hora</th><th>Total Sillas</th><th>Total Reservas</th><th>Acciones</th></tr></thead>
+            @foreach (var funcion in Model.Reservas)
+            {
+                <tr>
+                    <td>@funcion.FHS_Fecha</td>
+                    <td>@funcion.FHS_Hora</td>
+                    <td>@funcion.TotalSillas</td>
+                    <td>@funcion.TotalReservas</td>
+                    <td><button type="button" class="btn btn-primary" onclick="document.location.href='@Url.Content("~/Funcion/Reservas?funcion="+ ViewBag.Funcion+"&fecha="+funcion.FHS_Fecha+"&hora="+funcion.FHS_Hora)'">Ver Reservas</button></td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+

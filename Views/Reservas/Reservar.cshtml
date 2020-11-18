@@ -1,0 +1,166 @@
+﻿@model AppWeb_Cinema.ServiceFunciones.ResultFechas
+
+@{
+    ViewBag.Title = "Reservar Función";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reservar Función @ViewBag.Funcion</h2>
+
+
+<form autocomplete="off" method="post" action="Reservar">
+    <input type="hidden" name="funcion" value="@ViewBag.Funcion">
+    <div class="row">
+        <div class="col-md-12">
+            <label for="selectFechas">Fechas Función</label>
+            <select id="selectFechas" name="fecha" class="form-control" required>
+                <option value="" selected>Seleccione una opción...</option>
+                @foreach (string fecha in Model.Fechas)
+                {
+                    <option value="@fecha">@fecha</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-12" id="d-Horas" style="display:none;">
+            <label for="selectHoras">Horas Función</label>
+            <select id="selectHoras" name="hora" class="form-control" required></select>
+        </div>
+    </div>
+    <div class="row" id="d-infoHora" style="display:none; margin-top:20px;">
+        <div class="col-md-6" id="d-Descuento">
+            <label for="hasDescuento">¿Función con descuento?:</label>
+            <span id="s-hasDescuento"></span>
+        </div>
+        <div class="col-md-6" id="d-Porcentaje" style="display:none;">
+            <label for="descuento">Descuento:</label>
+            <span id="s-descuento">0%</span>
+        </div>
+    </div>
+    <div id="d-InfoReserva" style="margin-top:30px; display:none;">
+        <h4>Información de Reserva</h4>
+        <div class="form-group">
+            <label for="selectSillas">Silla Reserva:</label>
+            <select id="selectSillas" name="silla" class="form-control" required></select>
+        </div>
+        <div class="form-group">
+            <label for="documento">Número Documento:</label>
+            <input type="text" class="form-control solo-numero" id="documento" name="documento" maxlength="50" required>
+        </div>
+        <div class="form-group">
+            <label for="name">Nombre quien reserva:</label>
+            <input type="text" class="form-control" id="name" name="nombre" maxlength="100" required>
+        </div>
+        <div class="form-group">
+            <label for="tel">Teléfono Contacto:</label>
+            <input type="tel" class="form-control solo-numero" id="tel" name="telefono" maxlength="50" required>
+        </div>
+        <div class="form-group">
+            <label for="total">Total a Pagar:</label>
+            <input type="text" class="form-control solo-numero" id="total" name="total" readonly>
+        </div>
+        <button type="submit" class="btn btn-default">Reservar</button>
+    </div>
+</form>
+
+
+
+
+@section scripts
+{
+    <script>
+
+        var HorasFechas = [];
+
+        $(document).ready(() => {
+            $("#selectFechas").change(() => {
+                $("#d-Horas").hide();
+                $("#d-infoHora").hide();
+                $("#d-InfoReserva").hide();
+                $("#selectHoras").empty();
+                $("#selectSillas").empty();
+                HorasFechas = [];
+                let value = $("#selectFechas").val();
+                if (value) {
+                    fetch("@Url.Content("~/Reservas/HorariosFecha/")" + "?funcion=" + @ViewBag.Funcion + "&fecha=" + value)
+                        .then(result => {
+                            if (result.ok) {
+                                return result.json();
+                            }
+                        })
+                        .then(data => {
+                            console.log(data)
+                            if (data.Horas.length > 0) {
+                                HorasFechas = data.Horas;
+                                $("#selectHoras").empty();
+                                $("#selectHoras").append('<option value="" selected="">Seleccione una opción...</option>');
+
+                                for (var i in data.Horas) {
+                                    $("#selectHoras").append('<option value="' + HorasFechas[i].HF_Hora + '">' + HorasFechas[i].HF_Hora + '</option>');
+                                }
+                                $("#d-Horas").show();
+                            } else {
+                                alert("No hay horas definidas para esta fecha de la función.")
+                            }
+                        });
+                }
+            });
+
+            $("#selectHoras").change(() => {
+                $("#d-infoHora").hide();
+                $("#d-Porcentaje").hide();
+                $("#d-InfoReserva").hide();
+                $("#selectSillas").empty();
+                let value = $("#selectHoras").val();
+                if (value) {
+                    let infoHora = HorasFechas.find(elem => elem.HF_Hora == value);
+                    if (infoHora.HF_Descuento == 0) {
+                        $("#s-hasDescuento").html("No");
+                        $("#total").val(@ViewBag.CostoFuncion);
+                    } else {
+                        $("#s-hasDescuento").html("Si");
+                        $("#d-Porcentaje").show();
+                        $("#s-descuento").html(infoHora.HF_PorcentajeDescuento + "%");
+
+                        let costoFuncion = parseInt(@ViewBag.CostoFuncion);
+                        let total = costoFuncion - (costoFuncion * (parseInt(infoHora.HF_PorcentajeDescuento)/100))
+                        $("#total").val(total);
+                    }
+                    $("#d-infoHora").show();
+                    $("#d-InfoReserva").show();
+                    fetch("@Url.Content("~/Reservas/SillasFuncion/")" + "?funcion=" + @ViewBag.Funcion + "&fecha=" + $("#selectFechas").val() + "&hora=" + value)
+                        .then(result => {
+                            if (result.ok) {
+                                return result.json();
+                            }
+                        })
+                        .then(data => {
+                            console.log(data)
+                            if (data) {
+                                if (data.Sillas.length > 0) {
+                                    $("#selectSillas").empty();
+                                    $("#selectSillas").append('<option value="" selected="">Seleccione una opción...</option>');
+                                    let disponibles = false;
+                                    for (var i in data.Sillas) {
+                                        if (data.Sillas[i].FHS_Reservada == 0) {
+                                            disponibles = true;
+                                            $("#selectSillas").append('<option value="' + data.Sillas[i].FHS_Silla + '">' + data.Sillas[i].FHS_Silla + ' - Disponible </option>');
+                                        } else {
+                                            $("#selectSillas").append('<option disabled value="' + data.Sillas[i].FHS_Silla + '">' + data.Sillas[i].FHS_Silla + ' - Reservada </option>');
+                                        }
+                                    }
+                                    if (!disponibles) {
+                                        alert("Todas las sillas de esta función fueron reservadas, intente con un horario o fecha diferente.")
+                                    }
+                                } else {
+                                    alert("No hay sillas definidas para esta fecha de la función.")
+                                }
+                            } else {
+                                alert("No hay sillas definidas para esta fecha de la función.");
+                            }
+                        });
+                }
+
+            });
+        })
+    </script>
+}

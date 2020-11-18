@@ -1,0 +1,27 @@
+﻿@model AppWeb_Cinema.ServiceReservas.resultReservasHora
+
+@{
+    ViewBag.Title = "Reservas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reservas Función @ViewBag.Funcion [@ViewBag.Fecha - @ViewBag.Hora]</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped" style="margin-top:20px;">
+            <thead style="text-align:center;"><tr><th>Silla</th><th>Documento Persona</th><th>Nombre Persona</th><th>Telefono</th><th>Valor Pagado</th><th>Fecha Reservó</th></tr></thead>
+            @foreach (var funcion in Model.Reservas)
+            {
+        <tr>
+            <td>@funcion.R_Silla</td>
+            <td>@funcion.R_DocumentoPersona</td>
+            <td>@funcion.R_NombrePersona</td>
+            <td>@funcion.R_TelefonoPersona</td>
+            <td>$@funcion.R_ValorPagado</td>
+            <td>@funcion.R_FechaReserva</td>
+        </tr>
+            }
+        </table>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Crear Función";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Creación de Funciones</h2>
+
+<form class="form-horizontal" method="post" action="Crear">
+    <div class="form-group">
+        <label for="nameFuncion" class="col-sm-2 control-label">Nombre Función</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="nameFuncion" placeholder="EJ: Avengers End Game" name="nombre" maxlength="50" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="costoFuncion" class="col-sm-2 control-label">Costo Boleta</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <input type="text" class="form-control solo-numero" id="costoFuncion" name="precio" maxlength="6" required>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="button" class="btn btn-default" onclick="document.location.href='@Url.Content("~/Funcion")'">Volver</button>
+            <button type="submit" class="btn btn-success">Crear Función</button>
+        </div>
+    </div>
+</form>

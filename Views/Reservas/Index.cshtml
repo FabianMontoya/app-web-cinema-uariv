@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Reservar Función";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>• Funciones Disponibles</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped" style="margin-top:20px;">
+            <thead style="text-align:center;"><tr><th>ID</th><th>Nombre</th><th>Precio Entrada</th><th>Acciones</th></tr></thead>
+            @foreach (var funcion in Model.Funciones)
+            {
+                <tr>
+                    <td>@funcion.F_ID</td>
+                    <td>@funcion.F_Nombre</td>
+                    <td>$@funcion.F_Precio</td>
+                    <td><button type="button" class="btn btn-primary" onclick="document.location.href='@Url.Content("~/Reservas/Reservar")' + '?funcion=' + @funcion.F_ID + '&costo=' + window.btoa(@funcion.F_Precio)">Reservar</button></td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+
+

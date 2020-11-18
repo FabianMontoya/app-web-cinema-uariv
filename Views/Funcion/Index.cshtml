@@ -1,0 +1,32 @@
+﻿@model AppWeb_Cinema.ServiceFunciones.ResultFunciones
+
+@{
+    ViewBag.Title = "Funciones Cinema";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>• Funciones Existentes</h2>
+    </div>
+    <div class="col-md-12 mt-5">
+        <button type="button" class="btn btn-success" onclick="document.location.href='@Url.Content("~/Funcion/Crear")'">Crear Nueva Función <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+    </div>
+</div>
+<div class="row">        
+    <div class="col-md-12">
+        <table class="table table-striped" style="margin-top:20px;">
+            <thead style="text-align:center;"><tr><th>ID</th><th>Nombre</th><th>Precio Entrada</th><th>Acciones</th></tr></thead>
+            @foreach (var funcion in Model.Funciones)
+            {
+                <tr>
+                    <td>@funcion.F_ID</td>
+                    <td>@funcion.F_Nombre</td>
+                    <td>$@funcion.F_Precio</td>
+                    <td><button type="button" class="btn btn-primary" onclick="document.location.href='@Url.Content("~/Funcion/Horarios/"+ funcion.F_ID)'">Ver Horarios y Reservas</button></td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Use this area to provide additional information.</p>
+
+<form action="/Home/createRegister" method="post">
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">@@</span>
+        <input type="text" class="form-control" placeholder="Username" name="nombre" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon">$</span>
+        <input type="text" class="form-control" name="edad" aria-label="Amount (to the nearest dollar)">
+        <span class="input-group-addon">.00</span>
+    </div>
+    <button type="submit" class="btn btn-primary">Primary</button>
+
+    @if (ViewBag.MessageCreate != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.MessageCreate");
+            };
+        </script>
+    }
+</form>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2621e609-f039-4f84-a5ce-d2b8cf753de8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:49575/Servicios/Funciones.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Funciones.disco" MetadataType="Disco" ID="5a7ccde4-2e20-4a88-baae-10a502c16c0c" SourceId="1" SourceUrl="http://localhost:49575/Servicios/Funciones.svc?disco" />
+    <MetadataFile FileName="Funciones.xsd" MetadataType="Schema" ID="88816f05-08ce-4088-9124-bf2cbe83d8b3" SourceId="1" SourceUrl="http://localhost:49575/Servicios/Funciones.svc?xsd=xsd1" />
+    <MetadataFile FileName="Funciones1.xsd" MetadataType="Schema" ID="d464ad28-7dcd-44a3-a0cc-9278c8f210a4" SourceId="1" SourceUrl="http://localhost:49575/Servicios/Funciones.svc?xsd=xsd4" />
+    <MetadataFile FileName="Funciones2.xsd" MetadataType="Schema" ID="6d166741-ba95-4202-bc1b-8123c9f4f9fa" SourceId="1" SourceUrl="http://localhost:49575/Servicios/Funciones.svc?xsd=xsd2" />
+    <MetadataFile FileName="Funciones.wsdl" MetadataType="Wsdl" ID="d5d33527-d876-49cb-8e3c-c97965a7ba59" SourceId="1" SourceUrl="http://localhost:49575/Servicios/Funciones.svc?wsdl" />
+    <MetadataFile FileName="Funciones3.xsd" MetadataType="Schema" ID="78081610-2069-49d4-8c27-8d0413fa3d9e" SourceId="1" SourceUrl="http://localhost:49575/Servicios/Funciones.svc?xsd=xsd3" />
+    <MetadataFile FileName="Funciones4.xsd" MetadataType="Schema" ID="31063031-3e27-4267-a5fb-b4da5cf0136c" SourceId="1" SourceUrl="http://localhost:49575/Servicios/Funciones.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
